@@ -596,6 +596,7 @@
 
 (def usb-jack (translate (map + usb-holder-position [0 10 3]) (cube 8.1 20 3.1)))
 
+(def connectors-hole (translate (map + usb-holder-position [-6 0 3]) (cube 30 15 11)))
 
 (def trrs-holder-size [6.2 10 2]) ; trrs jack PJ-320A
 (def trrs-holder-hole-size [6.2 10 6]) ; trrs jack PJ-320A
@@ -693,11 +694,8 @@
                    thumb-connectors
                    (difference (union case-walls
                                       screw-insert-outers
-                                      usb-holder-holder
-                                      trrs-holder)
-                               usb-holder-space
-                               usb-jack
-                               trrs-holder-hole
+                                      )
+                               connectors-hole
                                screw-insert-holes))
                   (translate [0 0 -20] (cube 350 350 40))))
 
