@@ -15,7 +15,7 @@
 (def nrows 5)
 (def ncols 6)
 
-(def α (/ π 12))                        ; curvature of the columns
+(def α (/ π 9))                        ; curvature of the columns
 (def β (/ π 36))                        ; curvature of the rows
 (def centerrow (- nrows 3))             ; controls front-back tilt
 (def centercol 2)                       ; controls left-right tilt / tenting (higher number is more tenting)
@@ -38,7 +38,7 @@
 (def extra-height 1.0)                  ; original= 0.5
 
 (def wall-z-offset -5)                 ; original=-15 length of the first downward-sloping part of the wall (negative)
-(def wall-xy-offset 5)                  ; offset in the x and/or y direction for the first downward-sloping part of the wall (negative)
+(def wall-xy-offset 2)                  ; offset in the x and/or y direction for the first downward-sloping part of the wall (negative)
 (def wall-thickness 2)                  ; wall thickness parameter; originally 5
 
 ;; Settings for column-style == :fixed
@@ -67,14 +67,14 @@
 ;; Switch Hole ;;
 ;;;;;;;;;;;;;;;;;
 
-(def keyswitch-height 14.2) ;; Was 14.1, then 14.25
+(def keyswitch-height 14.15) ;; Was 14.1, then 14.25
 (def keyswitch-width 14.2)
 
 (def sa-profile-key-height 12.7)
 
-(def plate-thickness 4)
-(def side-nub-thickness 4)
-(def retention-tab-thickness 4)
+(def plate-thickness 2)
+(def side-nub-thickness 2)
+(def retention-tab-thickness 1.5)
 (def retention-tab-hole-thickness (- plate-thickness retention-tab-thickness))
 (def mount-width (+ keyswitch-width 3))
 (def mount-height (+ keyswitch-height 3))
@@ -251,7 +251,7 @@
 ;; Web Connectors ;;
 ;;;;;;;;;;;;;;;;;;;;
 
-(def web-thickness 4)
+(def web-thickness 2)
 (def post-size 0.1)
 (def web-post (->> (cube post-size post-size web-thickness)
                    (translate [0 0 (+ (/ web-thickness -2)
@@ -476,7 +476,7 @@
 (defn bottom-hull [& p]
   (hull p (bottom 0.001 p)))
 
-(def left-wall-x-offset 5) ; original 10
+(def left-wall-x-offset 3) ; original 10
 (def left-wall-z-offset  3) ; original 3
 
 (defn left-key-position [row direction]
@@ -596,7 +596,7 @@
 
 (def usb-jack (translate (map + usb-holder-position [0 10 3]) (cube 8.1 20 3.1)))
 
-(def connectors-hole (translate (map + usb-holder-position [-5 0 3]) (cube 30 15 11)))
+(def connectors-hole (translate (map + usb-holder-position [-3 0 3]) (cube 25 15 11)))
 
 (def trrs-holder-size [6.2 10 2]) ; trrs jack PJ-320A
 (def trrs-holder-hole-size [6.2 10 6]) ; trrs jack PJ-320A
@@ -639,7 +639,7 @@
 
 (defn screw-insert-all-shapes [bottom-radius top-radius height]
   (union (screw-insert 0 0         bottom-radius top-radius height [11 10 0])
-         (screw-insert 0 lastrow   bottom-radius top-radius height [0 0 0])
+         (screw-insert 0 lastrow   bottom-radius top-radius height [-3 0 0])
          (screw-insert lastcol lastrow  bottom-radius top-radius height [0 12 0])
          (screw-insert lastcol 0         bottom-radius top-radius height [0 7 0])
          (screw-insert 1 lastrow         bottom-radius top-radius height [0 -16 0])))
